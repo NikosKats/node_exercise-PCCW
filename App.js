@@ -1,9 +1,16 @@
 //Nikolaos Katsilidis 12/01/2024
 // Imports
+
+
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+
 const app = express();
+
+const messageRoutes = require('./routes/messages');
+const userRoutes = require('./routes/users');
+const version = "/api/v1";
 
 app.use(morgan('dev', {
 	skip: function (req, res) { return res.statusCode > 400 }
@@ -25,6 +32,10 @@ app.use((req, res, next) => {
 	next(); // Go to next middleware
 });
 
+
+app.use(`${version}/messages`, messageRoutes);
+app.use(`${version}/users`, userRoutes);
+
 app.use((req, res, next) => {
 	const error = new Error('No route was found for this request!');
 	error.status = 404;
@@ -39,5 +50,7 @@ app.use((error, req, res, next) => {
 		}
 	})
 });
+
+
 
 module.exports = app;
