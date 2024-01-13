@@ -10,6 +10,6 @@ sequelize.sync().then(() => {
     console.error('Error creating tables:', error);
 });
 
-const port = 3000;
+const port = 3001;
 const server = http.createServer(app);
 server.listen(port);

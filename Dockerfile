@@ -16,7 +16,7 @@ RUN npm install -g nodemon
 # Bundle app source
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3001
 
 # Start your Node.js app
 CMD [ "npm", "start" ]
