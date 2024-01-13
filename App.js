@@ -10,6 +10,7 @@ const app = express();
 
 const messageRoutes = require('./routes/messages');
 const userRoutes = require('./routes/users');
+const feedRoutes = require('./routes/feed')
 const version = "/api/v1";
 
 app.use(morgan('dev', {
@@ -35,6 +36,7 @@ app.use((req, res, next) => {
 
 app.use(`${version}/messages`, messageRoutes);
 app.use(`${version}/users`, userRoutes);
+app.use(`${version}/feed`,feedRoutes);
 
 app.use((req, res, next) => {
 	const error = new Error('No route was found for this request!');
