@@ -75,4 +75,19 @@ router.get('/exchange', async (req, res) => {
 
 })
 
+// Delete all messages
+router.delete('/delete', async (req, res) => {
+    try {
+        await Message.destroy({
+            where: {},
+            truncate: true // This option will truncate the table
+        });
+
+        res.status(200).send('All messages deleted successfully');
+    } catch (error) {
+        console.error('Error deleting all messages:', error);
+        res.status(500).send('Error deleting all messages');
+    }
+});
+
 module.exports = router;

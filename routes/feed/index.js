@@ -7,6 +7,8 @@ const { User } = require('../../models/UserModel');
 const { Message } = require('../../models/MessageModel');
 const seedsXlsxPath = 'seeds.xlsx';
 
+ 
+
 router.get('/', (req, res) => {
     res.send({ message: "Feed routes" })
 })
@@ -29,22 +31,22 @@ router.get('/check-database', async (req, res) => {
 /* Answer to : · Create an API endpoint that when receives a POST request to the “/feedDB” route, 
  it feeds the database with data. Under the hood your endpoint reads the seed.odt 
  file and imports the data to the database.*/
- 
+
 router.post('/feedDB', async (req, res) => {
     try {
         // Read the Excel file
-        const workbook = xlsx.readFile(seedsXlsxPath); 
+        const workbook = xlsx.readFile(seedsXlsxPath);
 
         // Map data to models
         const usersSheet = workbook.Sheets['users'];
         const messagesSheet = workbook.Sheets['messages'];
 
         // Convert sheets to JSON
-        const usersData = xlsx.utils.sheet_to_json(usersSheet);
-        const messagesData = xlsx.utils.sheet_to_json(messagesSheet);
+        const usersData = xlsx.utils.sheet_to_json(usersSheet, { raw: false });
+const messagesData = xlsx.utils.sheet_to_json(messagesSheet, { raw: false });
 
         // Import data into the database 
-        for (const userData of usersData) { 
+        for (const userData of usersData) {
             await User.create(userData);
         }
         for (const messageData of messagesData) { 

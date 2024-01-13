@@ -29,7 +29,7 @@ router.get('/all', async (req, res) => {
         const { id, name, surname, dateOfBirth, gender, username } = req.query;
 
         let queryConditions = {};
-        
+
         if (id) queryConditions.id = id;
         if (name) queryConditions.name = name;
         if (surname) queryConditions.surname = surname;
@@ -40,7 +40,7 @@ router.get('/all', async (req, res) => {
         const users = await User.findAll({
             where: queryConditions /* If queryConditions is an empty object (i.e., no query parameters were provided), findAll will return all users. */
         });
-            console.log("🚀 ~ router.get ~ queryConditions:", queryConditions)
+        console.log("🚀 ~ router.get ~ queryConditions:", queryConditions)
 
         res.status(200).json(users);
 
@@ -49,5 +49,51 @@ router.get('/all', async (req, res) => {
         res.status(500).send('Error retrieving users');
     }
 })
+
+
+/* · Create an API endpoint that receives a user-id and then retrieves a list of users, 
+sorted by the most recent message that has been exchanged between the user requested 
+and the rest of the users (just like your social-media applications). 
+In this requirement you might need to give us some instructions on how to run it. */
+
+
+router.get('/sorted/:userID', () => {
+    try {
+        const userID = req.params.userID;
+
+        let latestMessages = Message.findAll({
+            where: {
+                [Op.or]:[
+                    {senderId: userID},
+                    {receiverId: userID}
+                ]
+            },
+            attributes: ['senderId','receiverId', [sequelize.fn('MAX',sequelize.col('timestampSent')), 'latestTimestamp']],
+            group: [sequelize.col('senderId'),sequelize.col('receiverId')],
+            raw: true
+        });
+
+        res.status(200).send({latestMessages});
+
+    } catch (error) {
+        console.log("🚀 ~ router.get ~ error:", error)
+
+    }
+})
+
+// Delete all users
+router.delete('/delete', async (req, res) => {
+    try {
+        await User.destroy({
+            where: {},
+            truncate: true // This option will truncate the table
+        });
+
+        res.status(200).send('All users deleted successfully');
+    } catch (error) {
+        console.error('Error deleting all users:', error);
+        res.status(500).send('Error deleting all users');
+    }
+});
 
 module.exports = router;
