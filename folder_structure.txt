@@ -13,16 +13,16 @@
 ├── package.json
 ├── routes
 │   ├── feed
-│   │   └── index.js
+│   │   ├── index.js
+│   │   └── seeds.xlsx
 │   ├── messages
 │   │   └── index.js
 │   └── users
 │       └── index.js
 ├── seeds.xlsx
-├── utils
-│   ├── config.js
-│   ├── database.js
-│   └── db.js
-└── ~$seeds.xlsx
+└── utils
+    ├── config.js
+    ├── database.js
+    └── db.js
 
 7 directories, 19 files
