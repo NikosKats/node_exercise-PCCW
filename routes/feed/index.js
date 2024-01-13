@@ -19,10 +19,10 @@ router.post('/feedDB', async (req, res) => {
         const messagesData = xlsx.utils.sheet_to_json(messagesSheet);
 
         // Import data into the database 
-        for (const userData of usersData) {
+        for (const userData of usersData) { 
             await User.create(userData);
         }
-        for (const messageData of messagesData) {
+        for (const messageData of messagesData) { 
             await Message.create(messageData);
         }
 
