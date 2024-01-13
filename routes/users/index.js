@@ -1,5 +1,5 @@
 const express = require('express');
-const { Sequelize, Op } = require('sequelize');
+const { Op } = require('sequelize');
 const sequelize = require('../../utils/database');
 const router = express.Router();
 const { User } = require('../../models/UserModel');
@@ -72,6 +72,12 @@ router.get('/sorted/:userID', async (req,res) => {
             group: [sequelize.col('senderId'),sequelize.col('receiverId')],
             raw: true
         });
+
+        latestMessages.forEach((latestMessage) => {
+            console.log("🚀 ~ latestMessages.forEach ~ latestMessage:", latestMessage)
+            
+        	}
+        );
 
         res.status(200).send({latestMessages});
 

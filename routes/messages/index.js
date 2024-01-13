@@ -1,5 +1,5 @@
 const express = require('express');
-const { Sequelize, Op } = require('sequelize');
+const { Op } = require('sequelize');
 const sequelize = require('../../utils/database');
 const router = express.Router();
 const { Message } = require('../../models/MessageModel');
@@ -55,7 +55,7 @@ router.get('/exchange', async (req, res) => {
 
         const messages = await Message.findAll({
             where: {
-                [Sequelize.Op.or]: [
+                [Op.or]: [
                     { senderId: userID1, receiverId: userID2 },
                     { senderId: userID2, receiverId: userID1 }
                 ]
