@@ -57,33 +57,54 @@ router.get('/all', async (req, res) => {
 sorted by the most recent message that has been exchanged between the user requested 
 and the rest of the users (just like your social-media applications). 
 In this requirement you might need to give us some instructions on how to run it. */
-router.get('/sorted/:userID', async (req,res) => {
+router.get('/sorted/:userID', async (req, res) => {
     try {
         const userID = req.params.userID;
 
         let latestMessages = await Message.findAll({
             where: {
-                [Op.or]:[
-                    {senderId: userID},
-                    {receiverId: userID}
+                [Op.or]: [
+                    { senderId: userID },
+                    { receiverId: userID }
                 ]
             },
-            attributes: ['senderId','receiverId', [sequelize.fn('MAX',sequelize.col('timestampSent')), 'latestTimestamp']],
-            group: [sequelize.col('senderId'),sequelize.col('receiverId')],
+            attributes: ['senderId', 'receiverId', [sequelize.fn('MAX', sequelize.col('timestampSent')), 'latestTimestamp']],
+            group: [sequelize.col('senderId'), sequelize.col('receiverId')],
             raw: true
         });
 
-        latestMessages.forEach((latestMessage) => {
-            console.log("🚀 ~ latestMessages.forEach ~ latestMessage:", latestMessage)
-            
-        	}
+        let uniqueuserIDs = new Set();
+        latestMessages.forEach(message => {
+            if (message.senderId !== userID) {
+                uniqueuserIDs.add(message.senderId);
+            }
+            if (message.receiverId !== userID) {
+                uniqueuserIDs.add(message.receiverId);
+            }
+        });
+        uniqueuserIDs = Array.from(uniqueuserIDs);
+
+        let userIDToLatestTimestamp = {};
+        latestMessages.forEach(message => {
+            const otheruserID = message.senderId === userID ? message.receiverId : message.senderId;
+            userIDToLatestTimestamp[otheruserID] = message.latestTimestamp;
+        });
+
+        // Sort user IDs based on the latestTimestamp
+        uniqueuserIDs.sort((a, b) => userIDToLatestTimestamp[b] - userIDToLatestTimestamp[a]);
+
+        let sortedUsers = await Promise.all(
+            uniqueuserIDs.map(async id => {
+                return await User.findByPk(id);
+            })
         );
 
-        res.status(200).send({latestMessages});
+
+        res.status(200).send({ sortedUsers });
 
     } catch (error) {
         console.log("🚀 ~ router.get ~ error:", error);
-        res.status(500).send({message:"Error ",error});
+        res.status(500).send({ message: "Error ", error });
     }
 })
 
