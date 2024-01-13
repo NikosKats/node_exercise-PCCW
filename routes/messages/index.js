@@ -1,4 +1,5 @@
 const express = require('express');
+const { Sequelize, Op } = require('sequelize');
 const sequelize = require('../../utils/database');
 const router = express.Router();
 const { Message } = require('../../models/MessageModel');
@@ -6,6 +7,20 @@ const { Message } = require('../../models/MessageModel');
 router.get('/', (req, res) => {
     res.send({ message: "Messages routes" });
 })
+
+router.get('/all', async (req, res) => {
+    try {
+       
+        const messages = await Message.findAll();
+ 
+        res.status(200).json(messages);
+    } catch (error) {
+        console.error("Error retrieving messages:", error);
+        res.status(500).send('Error retrieving messages');
+    }
+});
+
+
 
 // Answer to : ·Using sequelize (postgre configuration), connect with Database.
 router.get('/check-database', async (req, res) => {
@@ -27,8 +42,37 @@ that receives the user-ids of two users and retrieves all
 of the messages that they have exchanged, ordered by the most recent sent.
 */
 
-router.get('/exchange', (req, res) => {
-    const { userID1, userID2 } = req.query;
+router.get('/exchange', async (req, res) => {
+
+    try {
+
+        const { userID1, userID2 } = req.query;
+
+        if (!userID1 || !userID2) {
+            return res.status(400).send('Both user IDs are required');
+        }
+
+
+        const messages = await Message.findAll({
+            where: {
+                [Sequelize.Op.or]: [
+                    { senderId: userID1, receiverId: userID2 },
+                    { senderId: userID2, receiverId: userID1 }
+                ]
+            },
+            order: [['timestampSent', 'DESC']] // Order by timestamp, most recent first
+        });
+
+        console.log("🚀 ~ router.get ~ messages:", messages)
+
+        res.status(200).json(messages);
+
+    } catch (error) {
+
+        console.log("🚀 ~ router.get ~ error:", error)
+        res.status(500).send('Error retrieving messages');
+    }
+
 })
 
 module.exports = router;
