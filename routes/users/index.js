@@ -57,7 +57,7 @@ and the rest of the users (just like your social-media applications).
 In this requirement you might need to give us some instructions on how to run it. */
 
 
-router.get('/sorted/:userID', () => {
+router.get('/sorted/:userID', (req,res) => {
     try {
         const userID = req.params.userID;
 
