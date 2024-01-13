@@ -1,6 +1,7 @@
 const express = require('express'); 
 const sequelize = require('../../utils/database');
 const router = express.Router();
+const { Message } = require('../../models/MessageModel');
 
 router.get('/', (req, res) => {
     res.send({ message: "Messages routes" });
