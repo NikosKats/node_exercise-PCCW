@@ -53,17 +53,15 @@ router.get('/all', async (req, res) => {
 })
 
 
-/* · Create an API endpoint that receives a user-id and then retrieves a list of users, 
+/* Answer to : · Create an API endpoint that receives a user-id and then retrieves a list of users, 
 sorted by the most recent message that has been exchanged between the user requested 
 and the rest of the users (just like your social-media applications). 
 In this requirement you might need to give us some instructions on how to run it. */
-
-
-router.get('/sorted/:userID', (req,res) => {
+router.get('/sorted/:userID', async (req,res) => {
     try {
         const userID = req.params.userID;
 
-        let latestMessages = Message.findAll({
+        let latestMessages = await Message.findAll({
             where: {
                 [Op.or]:[
                     {senderId: userID},
@@ -78,8 +76,8 @@ router.get('/sorted/:userID', (req,res) => {
         res.status(200).send({latestMessages});
 
     } catch (error) {
-        console.log("🚀 ~ router.get ~ error:", error)
-
+        console.log("🚀 ~ router.get ~ error:", error);
+        res.status(500).send({message:"Error ",error});
     }
 })
 
