@@ -1,4 +1,4 @@
-const express = require('express'); 
+const express = require('express');
 const sequelize = require('../../utils/database');
 const router = express.Router();
 const { Message } = require('../../models/MessageModel');
@@ -20,6 +20,15 @@ router.get('/check-database', async (req, res) => {
         console.log("🚀 ~ router.get ~ err:", err)
         res.status(500).send("Database Connection Error")
     };
+})
+
+/* Answer to: ·Create an API endpoint (or use the existing one) 
+that receives the user-ids of two users and retrieves all 
+of the messages that they have exchanged, ordered by the most recent sent.
+*/
+
+router.get('/exchange', (req, res) => {
+    const { userID1, userID2 } = req.query;
 })
 
 module.exports = router;

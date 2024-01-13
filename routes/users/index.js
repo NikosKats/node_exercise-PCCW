@@ -26,12 +26,13 @@ router.get('/check-database', async (req, res) => {
 router.get('/all', async (req, res) => {
     try {
 
-        const { name, email, dateOfBirth, gender, username } = req.query;
+        const { id, name, surname, dateOfBirth, gender, username } = req.query;
 
         let queryConditions = {};
         
+        if (id) queryConditions.id = id;
         if (name) queryConditions.name = name;
-        if (email) queryConditions.email = email;
+        if (surname) queryConditions.surname = surname;
         if (dateOfBirth) queryConditions.dateOfBirth = dateOfBirth;
         if (gender) queryConditions.gender = gender;
         if (username) queryConditions.username = username;
@@ -39,6 +40,7 @@ router.get('/all', async (req, res) => {
         const users = await User.findAll({
             where: queryConditions /* If queryConditions is an empty object (i.e., no query parameters were provided), findAll will return all users. */
         });
+            console.log("🚀 ~ router.get ~ queryConditions:", queryConditions)
 
         res.status(200).json(users);
 
