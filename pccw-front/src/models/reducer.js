@@ -3,7 +3,7 @@ import {createReducer } from '@reduxjs/toolkit';
 import { fetchMessagesExchange } from './actions';
 
 const initialState = {
-  messages: [], 
+  messagesExchange: [], 
   loading: false,
   error: null
 };
@@ -16,7 +16,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchMessagesExchange.succeeded, (state, action) => {
       console.log('fetchMessagesExchange.succeeded ');
-      state.products = action.payload;
+      state.messagesExchange = action.payload;
       state.loading = false;
     })
     .addCase(fetchMessagesExchange.failed, (state, action) => {

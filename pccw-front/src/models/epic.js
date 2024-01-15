@@ -10,7 +10,7 @@ import * as services from './services';
 const fetchMessagesExchangeEpic = (action$) =>
   action$.pipe(
     ofType(fetchMessagesExchange.type),
-    effect(fetchMessagesExchange, services.fetchMessagesExchange, {})
+    effect(fetchMessagesExchange, services.fetchMessagesExchange(action.payload), {})
   );
  
 
