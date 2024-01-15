@@ -71,19 +71,24 @@ const Conversations = ({ fetchConversations, fetchMessagesExchange, selectConver
 
   console.log("messagesExchange = ", messagesExchange)
 
-  const conversations = users;
+  const sortedUsers = users;
 
   return (
     <div className="conversations-list">
-      {conversations.map(conversation => (
-        <div key={conversation.id} className="conversation" onClick={() => onConversationClick(conversation.id)}>
-          <img src={conversation.avatar} alt={conversation.name} className="avatar" />
-          <div className="conversation-info">
-            <h5>{conversation.name}</h5>
-            <p>{conversation.latestMessage}</p>
+      {sortedUsers.map(user => (
+        <div key={user.id} className="user" onClick={() => onUserClick(user.id)}>
+          <img src={`path/to/avatar/for/user/${user.id}`} alt={user.name} className="avatar" />
+          <div className="user-info">
+            <h5>{`${user.name} ${user.surname}`}</h5>
+            <p>{`DOB: ${user.dateOfBirth}`}</p>
+            <p>{`Gender: ${user.gender}`}</p>
+            <p>{`Username: ${user.username}`}</p>
+            <p>{`Created At: ${user.createdAt}`}</p>
+            <p>{`Updated At: ${user.updatedAt}`}</p>
           </div>
         </div>
       ))}
+
     </div>
   );
 }
