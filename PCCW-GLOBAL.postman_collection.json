@@ -1,0 +1,558 @@
+{
+	"info": {
+		"_postman_id": "48805081-98b5-4c17-849f-8422c00aa275",
+		"name": "PCCW-GLOBAL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21635605"
+	},
+	"item": [
+		{
+			"name": "feedDb",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/feed/feedDB",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"feed",
+						"feedDB"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/all",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/sorted/:userID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/sorted/1",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"sorted",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/delete",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "messages/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/messages/delete",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "messages/exchange",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/messages/exchange?userID1=1&userID2=3",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						"exchange"
+					],
+					"query": [
+						{
+							"key": "userID1",
+							"value": "1"
+						},
+						{
+							"key": null,
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "userID2",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "messages",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/messages",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "messages/all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/messages/all",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/all?id=1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/all?id=1",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"all"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/all?name=Nick",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/all?name=Nick",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"all"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Nick"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/all?surname=SurnameE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/all?surname=SurnameE",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"all"
+					],
+					"query": [
+						{
+							"key": "surname",
+							"value": "SurnameE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/all?dateOfBirth=5-28-1987",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/all?dateOfBirth=5-28-1987",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"all"
+					],
+					"query": [
+						{
+							"key": "dateOfBirth",
+							"value": "5-28-1987"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users/all?gender=Female",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/all?gender=Female",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"all"
+					],
+					"query": [
+						{
+							"key": "gender",
+							"value": "Female"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sers/all?username=username6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/api/v1/users/all?username=username6",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"all"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "username6"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local_url",
+			"value": "http://localhost:3001",
+			"type": "string"
+		}
+	]
+}
