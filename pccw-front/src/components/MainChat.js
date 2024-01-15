@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import './styles/MainChat.css';
+import { useLocation } from 'react-router-dom';
+
 
 import withProps from '../withProps';
 import { fetchMessagesExchange } from '../models/actions';
