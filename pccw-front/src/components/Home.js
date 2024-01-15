@@ -7,11 +7,12 @@ import Conversations from './Conversations';
 
 function Home() {
 
- const handleConversationClick = (conversationId) => {
-  console.log("Conversation clicked:", conversationId);
+ const handleConversationClick = (userID1,userID2) => {
+  console.log("🚀 ~ handleConversationClick ~ userID1:", userID1)
+  console.log("🚀 ~ handleConversationClick ~ userID2:", userID2) 
 
   // Construct the URL
-  const url = `http://localhost:3000/?currentUserId=1&userID1=1&userID2=${conversationId}`;
+  const url = `http://localhost:3000/?currentUserId=${userID1}&userID1=${userID1}&userID2=${userID2}`;
   
   // Redirect to the URL
   window.location.href = url;
