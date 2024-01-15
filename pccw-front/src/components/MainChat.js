@@ -33,12 +33,13 @@ const MainChat = ({ fetchMessagesExchange, selectMessagesExchange }) => {
     };
 
     fetchMessagesExchangeAsync();
-  }, [fetchMessagesExchange]);  
+  }, [fetchMessagesExchange]);
 
   useEffect(() => {
-    // This effect will now only run when selectMessagesExchange changes
-    setMessagesExchange(selectMessagesExchange);
+    // Set messagesExchange to selectMessagesExchange or default to an empty array
+    setMessagesExchange(selectMessagesExchange || []);
   }, [selectMessagesExchange]);
+
 
   const handleSendMessage = () => {
     console.log("Message to send:", message);
@@ -57,16 +58,14 @@ const MainChat = ({ fetchMessagesExchange, selectMessagesExchange }) => {
   return (
     <div className="main-chat">
 
-      <div className="message-container"> 
-        {messagesExchange.map(message => (
+      <div className="message-container">
+        {messagesExchange && messagesExchange.map(message => (
           <div
             key={message.id}
             className={`message bubble ${message.senderId === currentUserId ? 'self' : 'other'}`}>
             {message.content}
           </div>
-        ))} 
-
-
+        ))}
       </div>
       <div className="input-container">
         <input
