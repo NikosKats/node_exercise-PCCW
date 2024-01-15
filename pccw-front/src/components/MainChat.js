@@ -12,9 +12,10 @@ const MainChat = ({ fetchMessagesExchange, selectMessagesExchange }) => {
   const queryParams = new URLSearchParams(location.search);
 
   // Extracting parameters from the URL
-  const currentUserId = queryParams.get('currentUserId') || '1';
-  const userID1 = queryParams.get('userID1') || '1';
-  const userID2 = queryParams.get('userID2') || '3';
+  const currentUserId = parseInt(queryParams.get('currentUserId')) || 1; 
+  const userID1 = parseInt(queryParams.get('userID1')) || 1;
+  const userID2 = parseInt(queryParams.get('userID2')) || 3;
+
 
   const payload = {
     userID1,
