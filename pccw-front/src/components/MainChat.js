@@ -6,9 +6,13 @@ import { fetchMessagesExchange } from '../models/actions';
 import { selectMessagesExchange } from '../models/selectors';
 
 const MainChat = ({ fetchMessagesExchange, selectMessagesExchange }) => {
-  const currentUserId = 1;
-  const userID1 = 1;
-  const userID2 = 3;
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  // Extracting parameters from the URL
+  const currentUserId = queryParams.get('currentUserId') || 'default value';
+  const userID1 = queryParams.get('userID1') || 'default value';
+  const userID2 = queryParams.get('userID2') || 'default value';
 
   const payload = {
     userID1,

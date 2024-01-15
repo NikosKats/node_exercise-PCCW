@@ -10,3 +10,17 @@ console.log("🚀 ~ fetchMessagesExchange ~ payload:", payload)
     method: 'GET'
   }).then((res) => res.json());
 };
+
+
+export const fetchConversations = ({ payload }) => {
+  console.log("🚀 ~ fetchConversations ~ payload:", payload)
+  
+    const {
+      conversationId
+    } = payload;
+  
+    return fetch(`http://localhost:3001/api/v1/users/sorted/${conversationId}`, {
+      method: 'GET'
+    }).then((res) => res.json());
+  };
+  

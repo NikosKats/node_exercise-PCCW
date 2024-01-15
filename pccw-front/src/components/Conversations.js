@@ -1,9 +1,12 @@
 import React from 'react';
 import './styles/Conversations.css';  
 
+import withProps from '../withProps';
+import { fetchConversations } from '../models/actions';
+import { selectConversations } from '../models/selectors';
 
 
-const Conversations = ({onConversationClick}) => {
+const Conversations = ({fetchConversations,selectConversations,onConversationClick}) => {
    
   const conversations = [
     { id: 1, name: 'Alice', latestMessage: 'Hi there!', avatar: 'path/to/avatar1.jpg' },
@@ -13,12 +16,12 @@ const Conversations = ({onConversationClick}) => {
 
   return (
     <div className="conversations-list">
-      {conversations.map(convo => (
-        <div key={convo.id} className="conversation" onClick={() => onConversationClick(convo.id)}>
-          <img src={convo.avatar} alt={convo.name} className="avatar" />
+      {conversations.map(conversation => (
+        <div key={conversation.id} className="conversation" onClick={() => onConversationClick(conversation.id)}>
+          <img src={conversation.avatar} alt={conversation.name} className="avatar" />
           <div className="conversation-info">
-            <h5>{convo.name}</h5>
-            <p>{convo.latestMessage}</p>
+            <h5>{conversation.name}</h5>
+            <p>{conversation.latestMessage}</p>
           </div>
         </div>
       ))}
@@ -26,4 +29,4 @@ const Conversations = ({onConversationClick}) => {
   );
 }
 
-export default Conversations;
+export default withProps({fetchConversations,selectConversations})(Conversations);

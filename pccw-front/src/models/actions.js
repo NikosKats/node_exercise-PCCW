@@ -16,4 +16,6 @@ const actionCreator = (type) => {
 
 export const fetchMessagesExchange = actionCreator('FETCH_MESSAGES_EXCHANGE');
 
+export const fetchConversations = actionCreator('FETCH_CONVERSATIONS');
+
 
