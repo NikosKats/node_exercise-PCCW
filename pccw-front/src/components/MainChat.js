@@ -5,23 +5,26 @@ import withProps from '../withProps';
 import { fetchMessagesExchange } from '../models/actions';
 import { selectMessagesExchange } from '../models/selectors';
 
-const MainChat = ({fetchMessagesExchange, selectMessagesExchange}) => {
-
-
+const MainChat = ({ fetchMessagesExchange, selectMessagesExchange }) => {
   const currentUserId = 1;
   const userID1 = 1;
   const userID2 = 3;
-   
+
+  const payload = {
+    userID1,
+    userID2
+  };
 
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [messagesExchange, setMessagesExchange] = useState([]);
 
   useEffect(() => {
-    
+    setLoading(true);
     const fetchMessagesExchangeAsync = async () => {
       try {
-        await fetchMessagesExchange(userID1,userID2);
+        await fetchMessagesExchange(payload);
       } catch (e) {
         setError('Error fetching data: ' + e.toString());
       } finally {
@@ -30,33 +33,39 @@ const MainChat = ({fetchMessagesExchange, selectMessagesExchange}) => {
     };
 
     fetchMessagesExchangeAsync();
+  }, [fetchMessagesExchange]);  
 
-   
-
-  }, [fetchMessagesExchange]);
-
-  console.log("🚀 ~ MainChat ~ selectMessagesExchange:", selectMessagesExchange)
-  
-  const messagesExchange = selectMessagesExchange;
-
-
+  useEffect(() => {
+    // This effect will now only run when selectMessagesExchange changes
+    setMessagesExchange(selectMessagesExchange);
+  }, [selectMessagesExchange]);
 
   const handleSendMessage = () => {
     console.log("Message to send:", message);
     setMessage('');
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+
   return (
     <div className="main-chat">
 
-      <div className="message-container">
+      <div className="message-container"> 
         {messagesExchange.map(message => (
           <div
             key={message.id}
             className={`message bubble ${message.senderId === currentUserId ? 'self' : 'other'}`}>
             {message.content}
           </div>
-        ))}
+        ))} 
+
 
       </div>
       <div className="input-container">
@@ -73,4 +82,4 @@ const MainChat = ({fetchMessagesExchange, selectMessagesExchange}) => {
   );
 }
 
-export default withProps({fetchMessagesExchange, selectMessagesExchange})(MainChat);
+export default withProps({ fetchMessagesExchange, selectMessagesExchange })(MainChat);
