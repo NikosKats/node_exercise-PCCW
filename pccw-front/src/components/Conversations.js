@@ -71,11 +71,7 @@ const Conversations = ({ fetchConversations, fetchMessagesExchange, selectConver
 
   console.log("messagesExchange = ", messagesExchange)
 
-  const conversations = [
-    { id: 1, name: 'Alice', latestMessage: 'Hi there!', avatar: 'path/to/avatar1.jpg' },
-    { id: 2, name: 'Bob', latestMessage: 'How are you?', avatar: 'path/to/avatar2.jpg' },
-
-  ];
+  const conversations = users;
 
   return (
     <div className="conversations-list">
