@@ -1,0 +1,34 @@
+import {createReducer } from '@reduxjs/toolkit';
+
+import { fetchMessagesExchange } from './actions';
+
+const initialState = {
+  messages: [], 
+  loading: false,
+  error: null
+};
+
+const reducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(fetchMessagesExchange, (state, action) => {
+      console.log('fetchMessagesExchange ');
+      state.loading = true;
+    })
+    .addCase(fetchMessagesExchange.succeeded, (state, action) => {
+      console.log('fetchMessagesExchange.succeeded ');
+      state.products = action.payload;
+      state.loading = false;
+    })
+    .addCase(fetchMessagesExchange.failed, (state, action) => {
+      console.log('fetchMessagesExchange.failed ');
+      state.error = action.payload;
+      state.loading = false;
+    })
+    .addDefaultCase((state, action) => {
+      console.log("🚀 ~ .addDefaultCase ~ state:", state)
+      console.log("🚀 ~ .addDefaultCase ~ action:", action)
+      
+    });
+});
+
+export default reducer;
