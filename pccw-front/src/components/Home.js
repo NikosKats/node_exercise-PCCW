@@ -1,10 +1,26 @@
 import React from 'react';
+import './styles/Home.css';  
+ 
+import MainChat from './MainChat';  
+
+import Conversations from './Conversations';  
 
 function Home() {
+
+  const handleConversationClick = (conversationId) => { 
+    console.log("Conversation clicked:", conversationId); 
+  };
+
   return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is the main landing page of our React application.</p>
+    <div className="home-container">
+      <div className="chat-area">
+        <h2>Main Chat</h2> 
+        <MainChat />
+      </div>
+      <div className="conversations-list">
+        <h3>Conversations</h3> 
+        <Conversations onConversationClick={handleConversationClick} />
+      </div>
     </div>
   );
 }
