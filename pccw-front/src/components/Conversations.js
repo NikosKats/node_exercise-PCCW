@@ -83,20 +83,17 @@ const Conversations = ({ fetchConversations, fetchMessagesExchange, selectConver
 
   return (
     <div className="conversations-list">
-      {conversations && conversations.map(user => (
-        <div key={user.id} className="user" onClick={() => onConversationClick(user.id)}>
+    {conversations && conversations.map(user => (
+      <div key={user.id} className="conversation-item" onClick={() => onConversationClick(user.id)}>
         <img src={`path/to/avatar/for/user/${user.id}`} alt={user.name} className="avatar" />
-        <div className="user-info">
-          <h5>{`${user.name} ${user.surname}`}</h5>
-          <p>{`Username: ${user.username}`}</p>
-          {/* <p>{`DOB: ${user.dateOfBirth}`}</p>
-          <p>{`Gender: ${user.gender}`}</p> */}
-          {/* <p>{`Created At: ${user.createdAt}`}</p>
-          <p>{`Updated At: ${user.updatedAt}`}</p> */}
+        <div className="conversation-info">
+          <h5 className="conversation-title">{`${user.name} ${user.surname}`}</h5>
+          <p className="conversation-snippet">{`Username: ${user.username}`}</p>
         </div>
       </div>
-      ))}
-    </div>
+    ))}
+  </div>
+  
   );
 }
 
