@@ -1,9 +1,10 @@
 import {createReducer } from '@reduxjs/toolkit';
 
-import { fetchMessagesExchange } from './actions';
+import { fetchMessagesExchange, fetchConversations } from './actions';
 
 const initialState = {
   messagesExchange: [], 
+  users: [],
   loading: false,
   error: null
 };
@@ -21,6 +22,20 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchMessagesExchange.failed, (state, action) => {
       console.log('fetchMessagesExchange.failed ');
+      state.error = action.payload;
+      state.loading = false;
+    })
+    .addCase(fetchConversations, (state, action) => {
+      console.log('fetchConversations ');
+      state.loading = true;
+    })
+    .addCase(fetchConversations.succeeded, (state, action) => {
+      console.log('fetchConversations.succeeded ');
+      state.users = action.payload;
+      state.loading = false;
+    })
+    .addCase(fetchConversations.failed, (state, action) => {
+      console.log('fetchConversations.failed ');
       state.error = action.payload;
       state.loading = false;
     })

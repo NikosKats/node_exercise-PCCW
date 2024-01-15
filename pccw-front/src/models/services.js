@@ -16,10 +16,10 @@ export const fetchConversations = ({ payload }) => {
   console.log("🚀 ~ fetchConversations ~ payload:", payload)
   
     const {
-      conversationId
+      currentUserId
     } = payload;
   
-    return fetch(`http://localhost:3001/api/v1/users/sorted/${conversationId}`, {
+    return fetch(`http://localhost:3001/api/v1/users/sorted/${currentUserId}`, {
       method: 'GET'
     }).then((res) => res.json());
   };
