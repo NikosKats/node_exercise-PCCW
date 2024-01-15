@@ -12,16 +12,6 @@ const fetchMessagesExchangeEpic = (action$) =>
     ofType(fetchMessagesExchange.type),
     effect(fetchMessagesExchange, services.fetchMessagesExchange, {})
   );
-
-// const fetchMessagesExchangeEpic = (action$) =>
-//   action$.pipe(
-//     // we use action with which we want to call the epic
-//     ofType(fetchMessagesExchange.type), // takes a string as a parameter which is an action, instead of using filter
-//     mergeMap(() => {
-//       return ajax.getJSON(`http://localhost:8000/api/products`);
-//     }), // wait to resolve request with mergeMap, on response move to pipe
-//     // tap((res) => console.log(res)),
-//     map((res) => fetchMessagesExchange.succeeded(res)) // returns action setBoard
-//   );
+ 
 
 export default combineEpics(fetchMessagesExchangeEpic); // combine multiple epics

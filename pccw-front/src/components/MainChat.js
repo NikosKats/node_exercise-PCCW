@@ -1,9 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/MainChat.css';
 
+import withProps from '../withProps';
+import { fetchMessagesExchange } from '../models/actions';
+import { selectMessagesExchange } from '../models/selectors';
 
-const MainChat = () => {
+const MainChat = ({fetchMessagesExchange, selectMessagesExchange}) => {
+
+
+
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState('');
+
+  useEffect(() => {
+    
+    const fetchMessagesExchangeAsync = async () => {
+      try {
+        await fetchMessagesExchange();
+      } catch (e) {
+        setError('Error fetching data: ' + e.toString());
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMessagesExchangeAsync();
+
+  }, [fetchMessagesExchange]);
+
+  console.log("🚀 ~ MainChat ~ selectMessagesExchange:", selectMessagesExchange)
 
   const currentUserId = 1;
    
@@ -94,4 +120,4 @@ const MainChat = () => {
   );
 }
 
-export default MainChat;
+export default withProps({fetchMessagesExchange, selectMessagesExchange})(MainChat);
