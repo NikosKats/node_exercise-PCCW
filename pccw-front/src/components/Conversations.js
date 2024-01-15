@@ -88,7 +88,7 @@ const Conversations = ({ fetchConversations, fetchMessagesExchange, selectConver
         <img src={`path/to/avatar/for/user/${user.id}`} alt={user.name} className="avatar" />
         <div className="conversation-info">
           <h5 className="conversation-title">{`${user.name} ${user.surname}`}</h5>
-          <p className="conversation-snippet">{`Username: ${user.username}`}</p>
+          <p className="conversation-snippet">{`${user.username}`}</p>
         </div>
       </div>
     ))}
